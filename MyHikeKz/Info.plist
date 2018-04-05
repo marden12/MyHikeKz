@@ -6,8 +6,23 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>OpenSans-Regular.ttf</string>
+		<string>Roboto-Light.ttf</string>
+		<string>YanoneKaffeesatz-Regular.ttf</string>
+		<string>YanoneKaffeesatz-Light.ttf</string>
+	</array>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Для определения вашего месторасположения</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Для определения вашего месторасположения</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Для определения вашего месторасположения</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Для определения вашего месторасположения</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -22,12 +37,12 @@
 	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
