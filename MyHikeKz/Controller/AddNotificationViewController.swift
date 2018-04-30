@@ -52,8 +52,7 @@ class AddNotificationViewController: UIViewController {
         let tf = CustomTextField()
         tf.placeholder = "Дата"
         tf.keyboardDistanceFromTextField = 100000
-        tf.addTarget(self, action: #selector(textFieldShouldBeginEditing(textField:)), for: .editingDidBegin)
-        tf.addTarget(self, action: #selector(textFieldShouldReturn(textField:)), for: .editingDidBegin)
+        tf.isUserInteractionEnabled = false
         return tf
     }()
 
@@ -80,7 +79,16 @@ class AddNotificationViewController: UIViewController {
         button.backgroundColor = .myBlue
         button.layer.cornerRadius = 5
         button.addTarget(self, action: #selector(submitAction), for: .touchUpInside)
-        
+        button.titleLabel?.font = UIFont(name: Standart.robotoFont.rawValue, size: 16)
+        return button
+    }()
+    lazy var chooseDate:UIButton = {
+        let button = UIButton()
+        button.setTitle("Выбрать дату", for: .normal)
+        button.setTitleColor(.myGray, for: .normal)
+        button.backgroundColor = .myBlue
+        button.layer.cornerRadius = 5
+        button.addTarget(self, action: #selector(openDate), for: .touchUpInside)
         button.titleLabel?.font = UIFont(name: Standart.robotoFont.rawValue, size: 16)
         return button
     }()
@@ -88,10 +96,21 @@ class AddNotificationViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .backgroundColor
-        [scrollView,logoImageView,titleLabel,name,date,place,other,telephone,submitButton,cancelButton].forEach{
+        [scrollView,logoImageView,titleLabel,name,date,place,other,telephone,submitButton,cancelButton,chooseDate].forEach{
             view.addSubview($0)
         }
         loadConstraints()
+    }
+    @objc func openDate(){
+        view.endEditing(true)
+        let picker = DateTimePicker.show()
+        picker.highlightColor = UIColor(red: 255.0/255.0, green: 138.0/255.0, blue: 138.0/255.0, alpha: 1)
+        picker.isDatePickerOnly = false // to hide time and show only date picker
+        picker.completionHandler = { date in
+            self.date.text = picker.selectedDateString
+            
+            
+        }
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -100,20 +119,6 @@ class AddNotificationViewController: UIViewController {
             lastHeight += Int($0.sizeThatFits($0.bounds.size).height)
         }
         scrollView.contentSize = CGSize(width: self.screen.width , height: CGFloat(lastHeight))
-    }
-    @objc func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        let picker = DateTimePicker.show()
-        picker.highlightColor = UIColor(red: 255.0/255.0, green: 138.0/255.0, blue: 138.0/255.0, alpha: 1)
-        picker.isDatePickerOnly = false // to hide time and show only date picker
-        picker.completionHandler = { date in
-            self.date.text = picker.selectedDateString
-            
-        }
-        return true
-    }
-    @objc func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
     }
     @objc func submitAction(){
         if (name.text?.isEmpty)! || (date.text?.isEmpty)! || (place.text?.isEmpty)! || (other.text?.isEmpty)! || (telephone.text?.isEmpty)! {
@@ -154,10 +159,15 @@ class AddNotificationViewController: UIViewController {
             n.width == v.width - 80
             n.height == 45
         }
-        constrain(titleLabel,name,date,place) { view1, view2,view3,view4 in
+        constrain(titleLabel,name,date,place,chooseDate) { view1, view2,view3,view4,view5 in
             distribute(by: 16, vertically: view1, view2,view3,view4)
-            align(centerX: view1, view2,view3,view4)
-            view3.width == view2.width
+            align(centerX: view1, view2,view4)
+            view3.width == view2.width/2
+            view3.left == view2.left
+            view5.width == view3.width
+            view5.height == view3.height
+            view5.left == view3.right + 4
+            view5.top == view3.top
             [view3,view4].forEach{
                 $0.width == view2.width
                 $0.height == view2.height

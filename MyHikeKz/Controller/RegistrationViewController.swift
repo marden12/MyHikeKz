@@ -123,6 +123,5 @@ class RegistrationViewController: UIViewController {
             authService.signUp(finalEmail,password:password,vc: self)
             
         }
-        
     }
 }

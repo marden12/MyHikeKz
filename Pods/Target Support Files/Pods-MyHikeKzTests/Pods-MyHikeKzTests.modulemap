@@ -1,0 +1,6 @@
+framework module Pods_MyHikeKzTests {
+  umbrella header "Pods-MyHikeKzTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

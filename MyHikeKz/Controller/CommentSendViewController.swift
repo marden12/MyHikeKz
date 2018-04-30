@@ -81,6 +81,7 @@ class CommentSendViewController: UIViewController {
         }
 
     }
+    
     func getTodayString() -> String{
         let date = Date()
         let calender = Calendar.current
@@ -92,8 +93,8 @@ class CommentSendViewController: UIViewController {
         let today_string = String(hour!)  + ":" + String(minute!) + ":" +  String(second!)
         
         return today_string
-        
     }
+    
     func addToDataBase(){
         if commTable.text.isEmpty{
             self.showMessage("Нельзя оставить пустой комментарий", type: .error)

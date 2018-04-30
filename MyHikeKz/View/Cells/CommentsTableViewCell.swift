@@ -26,6 +26,7 @@ class CommentsTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont(name: Standart.robotoFont.rawValue, size: 14)
         label.textColor = .black
+        label.numberOfLines = 100
         return label
     }()
     

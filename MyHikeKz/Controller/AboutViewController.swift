@@ -30,7 +30,6 @@ class AboutViewController: UIViewController {
     var places: Places?
     fileprivate lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.backgroundColor = .white
         scrollView.contentSize = CGSize(width: self.screen.width, height: 2*self.screen.height)
         scrollView.backgroundColor = .backgroundColor
         return scrollView
